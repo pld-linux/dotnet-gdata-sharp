@@ -1,7 +1,7 @@
 %include	/usr/lib/rpm/macros.mono
 
 Summary:	gdata-sharp is a C# library that makes it easy to access data through Google Data APIs
-Name:		dotnet-notify-sharp
+Name:		dotnet-gdata-sharp
 Version:	1.4.0.2
 Release:	1
 License:	Apache v2.0
