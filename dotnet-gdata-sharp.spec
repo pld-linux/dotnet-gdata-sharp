@@ -10,8 +10,9 @@ Source0:	http://google-gdata.googlecode.com/files/libgoogle-data-mono-%{version}
 Patch0:		pkgconfig-typo-fix.patch
 Group:		Development/Libraries
 URL:		http://code.google.com/p/google-gdata/
+BuildRequires:	dos2unix
+BuildRequires:	mono-csharp
 BuildRequires:	mono-devel
-BuildRequires:	monodoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
