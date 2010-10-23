@@ -1,14 +1,14 @@
+#
 %include	/usr/lib/rpm/macros.mono
-
+#
 Summary:	gdata-sharp is a C# library that makes it easy to access data through Google Data APIs
 Name:		dotnet-gdata-sharp
-Version:	1.4.0.2
-Release:	3
+Version:	1.6.0.0
+Release:	1
 License:	Apache v2.0
-Source0:	http://google-gdata.googlecode.com/files/libgoogle-data-mono-%{version}.tar.gz
-# Source0-md5:	3914538201b00c6d33aa6ada0e9d1ec6
-Patch0:		pkgconfig-typo-fix.patch
 Group:		Development/Libraries
+Source0:	http://google-gdata.googlecode.com/files/libgoogle-data-mono-%{version}.tar.gz
+# Source0-md5:	5056c2f594e4d0421a2ff54778c52417
 URL:		http://code.google.com/p/google-gdata/
 BuildRequires:	dos2unix
 BuildRequires:	mono-csharp
@@ -30,7 +30,6 @@ Files required for compilation using gdata-sharp.
 %prep
 %setup -q -n libgoogle-data-mono-%{version}
 dos2unix misc/*.pc.in
-%patch0 -p1
 
 %build
 %{__make} \
@@ -38,6 +37,7 @@ dos2unix misc/*.pc.in
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX=%{_prefix}
