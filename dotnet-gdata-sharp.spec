@@ -3,12 +3,12 @@
 #
 Summary:	gdata-sharp is a C# library that makes it easy to access data through Google Data APIs
 Name:		dotnet-gdata-sharp
-Version:	1.6.0.0
+Version:	1.7.0.1
 Release:	1
 License:	Apache v2.0
 Group:		Development/Libraries
 Source0:	http://google-gdata.googlecode.com/files/libgoogle-data-mono-%{version}.tar.gz
-# Source0-md5:	5056c2f594e4d0421a2ff54778c52417
+# Source0-md5:	ba4f57eb5ed597d2e5d16f5deb69d411
 URL:		http://code.google.com/p/google-gdata/
 BuildRequires:	dos2unix
 BuildRequires:	mono-csharp
