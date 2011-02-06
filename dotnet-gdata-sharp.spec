@@ -48,7 +48,7 @@ if [ "%{_lib}" != "lib" ]; then
 fi
 
 %clean
-rm -rf "$RPM_BUILD_ROOT"
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
