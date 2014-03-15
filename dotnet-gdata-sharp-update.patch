@@ -1,0 +1,39 @@
+--- libgoogle-data-mono-2.2.0.0/Makefile.orig	2012-04-20 23:46:55.000000000 +0200
++++ libgoogle-data-mono-2.2.0.0/Makefile	2014-03-15 17:05:11.149860613 +0100
+@@ -30,10 +30,12 @@
+   Google.GData.YouTube.dll \
+   Google.GData.Blogger.dll \
+   Google.GData.Analytics.dll
++#  Google.GData.ContentForShopping.dll \
++#  Google.GData.WebmasterTools.dll
+ 
+ UNINSTALLLIBS = $(basename $(ALLLIBS))
+ 
+-FRAMEWORK_REFS = -r:System.dll -r:System.Xml.dll -r:System.Configuration.dll
++FRAMEWORK_REFS = -r:System.dll -r:System.Xml.dll -r:System.Configuration.dll $(shell pkg-config --libs newtonsoft-json)
+ 
+ PKGCONFIG_FILES = $(patsubst %.pc.in,%.pc,$(wildcard misc/*.pc.in))
+ 
+@@ -65,6 +67,8 @@
+ youtube_sources = $(wildcard src/youtube/*.cs) $(wildcard version/*.cs)
+ blogger_sources = $(wildcard src/blogger/*.cs) $(wildcard version/*.cs)
+ analytics_sources = $(wildcard src/analytics/*.cs) $(wildcard version/*.cs)
++contentforshopping_sources = $(wildcard src/contentforshopping/*.cs) $(wildcard version/*.cs)
++webmastertools_sources = $(wildcard src/webmastertools/*.cs) $(wildcard version/*.cs)
+ test_sources = $(wildcard src/unittests/*.cs) $(wildcard src/unittests/gapps/*.cs)\
+          $(wildcard src/unittests/spreadsheets/*.cs) $(wildcard src/unittests/youtube/*.cs)  $(wildcard src/version/*cs)\
+          $(wildcard src/unittests/core/*.cs)  $(wildcard src/unittests/picasa/*.cs)
+@@ -105,6 +109,13 @@
+ Google.GData.Analytics.dll: $(CORELIBS) $(analytics_sources) src/analytics/analytics.sn
+ 	$(CSC) $(DEFINES) -target:library -out:$@ $(COREREFS) $(analytics_sources) -keyfile:src/analytics/analytics.sn
+ 
++Google.GData.ContentForShopping.dll: $(CORELIBS) $(contentforshopping_sources) 
++	$(CSC) $(DEFINES) -target:library -out:$@ $(COREREFS) $(contentforshopping_sources)
++# -keyfile:src/contentforshopping/???.sn
++
++Google.GData.WebmasterTools.dll: $(CORELIBS) $(webmastertools_sources) 
++	$(CSC) $(DEFINES) -target:library -out:$@ $(COREREFS) $(webmastertools_sources)
++# -keyfile:src/webmastertools/???.sn
+ 
+ clean:
+ 	-rm -f *.sn *.dll *exe $(PKGCONFIG_FILES)
