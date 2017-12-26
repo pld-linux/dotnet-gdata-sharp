@@ -1,22 +1,20 @@
-#
 %include	/usr/lib/rpm/macros.mono
-#
 Summary:	gdata-sharp - C# library that makes it easy to access data through Google Data APIs
 Summary(pl.UTF-8):	gdata-sharp - biblioteka C# ułatwiająca dostęp do danych poprzez API Google Data
 Name:		dotnet-gdata-sharp
 Version:	2.2.0.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries
 #Source0Download: https://code.google.com/p/google-gdata/downloads/list
 Source0:	http://google-gdata.googlecode.com/files/libgoogle-data-mono-%{version}.tar.gz
 # Source0-md5:	d748a5ae2b349b9832e303e95c18ce79
 Patch0:		%{name}-update.patch
-URL:		http://code.google.com/p/google-gdata/
+URL:		https://github.com/google/google-gdata
 BuildRequires:	dos2unix
 BuildRequires:	dotnet-newtonsoft-json-devel
-BuildRequires:	mono-csharp
-BuildRequires:	mono-devel
+BuildRequires:	mono-csharp >= 4
+BuildRequires:	mono-devel >= 4
 BuildRequires:	rpmbuild(monoautodeps)
 Requires:	dotnet-newtonsoft-json
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -49,6 +47,7 @@ dos2unix misc/*.pc.in
 
 %build
 %{__make} \
+	CSC=mcs \
 	PREFIX=%{_prefix}
 
 # alternative (but with no functional install target)
@@ -58,12 +57,13 @@ dos2unix misc/*.pc.in
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	CSC=mcs \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX=%{_prefix}
 
 if [ "%{_lib}" != "lib" ]; then
 	install -d $RPM_BUILD_ROOT%{_prefix}/%{_lib}
-	mv $RPM_BUILD_ROOT%{_prefix}/{lib,%{_lib}}/pkgconfig
+	%{__mv} $RPM_BUILD_ROOT%{_prefix}/{lib,%{_lib}}/pkgconfig
 fi
 
 %clean
