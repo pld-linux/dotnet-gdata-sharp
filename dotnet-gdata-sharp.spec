@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.mono
 Summary:	gdata-sharp - C# library that makes it easy to access data through Google Data APIs
 Summary(pl.UTF-8):	gdata-sharp - biblioteka C# ułatwiająca dostęp do danych poprzez API Google Data
 Name:		dotnet-gdata-sharp
